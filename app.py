@@ -20,7 +20,7 @@ def generate_text(prompt):
     return message.strip()
 
 # Xử lý request POST đến server
-@app.route("/generate", methods=["POST"])
+@app.route("/chat", methods=["POST"])
 def generate():
     prompt = request.form["prompt"]
     message = generate_text(prompt)
