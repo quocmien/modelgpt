@@ -1,11 +1,11 @@
 from flask import Flask, request, jsonify
 import openai
-import config
+import os
 
 app = Flask(__name__)
 
 # Khởi tạo API key cho OpenAI
-openai.api_key = config.API_KEY
+API_KEY = os.environ.get('API_KEY')
 
 # Tạo function để thực hiện inference trên GPT model
 def generate_text(prompt):
