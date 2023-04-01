@@ -1,4 +1,4 @@
 /__pycache__
 /myenv
 .env
-config,py
+/config,py
