@@ -17,7 +17,7 @@ def generate():
     data = request.get_json()
 
     # Lấy prompt từ input text
-    prompt = data.get('prompt', '')
+    prompt = data['text']
 
     # Thực hiện sinh text response bằng OpenAI API
     completions = openai.Completion.create(
