@@ -5,7 +5,8 @@ import os
 app = Flask(__name__)
 
 # Khởi tạo OpenAI API
-api_key = os.environ.get('OPENAI_API_KEY')
+# api_key = os.environ.get('OPENAI_API_KEY')
+openai.api_key = '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'
 
 # Chọn model để sinh ra text response
 model_engine = "davinci" # ví dụ
@@ -15,9 +16,10 @@ model_engine = "davinci" # ví dụ
 def generate():
     # Lấy input text từ request của client dưới dạng JSON
     data = request.json
+    return data
 
-    # Lấy prompt từ input text
-    prompt = data['text']
+    # # Lấy prompt từ input text
+    # prompt = data['text']
 
     # Thực hiện sinh text response bằng OpenAI API
     completions = openai.Completion.create(
