@@ -4,8 +4,9 @@ import openai
 app = Flask(__name__)
 
 # Khởi tạo OpenAI API
+openai.api_key = process.env.OPENAI_API_KEY;
 
-openai.api_key = process.env.OPENAI_API_KEY
+
 # Chọn model để sinh ra text response
 model_engine = "davinci" # ví dụ
 
@@ -28,8 +29,8 @@ def generate():
     message = completions.choices[0].text.strip()
 
     # Trả về response dưới dạng JSON cho client
-    response = {'message': message}
-    return jsonify(response)
+    res = {'message': message}
+    return jsonify(res)
 
 if __name__ == "__main__":
     app.run(debug=True,host="0.0.0.0", port=5000,use_reloader=True)
