@@ -1,27 +1,38 @@
-from flask import Flask, request, jsonify
+from flask import Flask, jsonify, request
 import openai
 import os
 
 app = Flask(__name__)
 
-# Khởi tạo API key cho OpenAI
+# Khởi tạo OpenAI API
+
 API_KEY = os.environ.get('API_KEY')
 
-# Tạo function để thực hiện inference trên GPT model
-def generate_text(prompt):
-    completions = openai.Completion.create(
-        engine="davinci", prompt=prompt, max_tokens=60
-    )
-    message = completions.choices[0].text
-    return message.strip()
 
-# Xử lý request POST đến server
-@app.route("/generate", methods=["POST"])
+# Chọn model để sinh ra text response
+model_engine = "davinci" # ví dụ
+
+# Tạo route để nhận request từ client
+@app.route('/generate', methods=['POST'])
 def generate():
-    prompt = request.form["prompt"]
-    message = generate_text(prompt)
-    response = {"message": message}
+    # Lấy input text từ request của client dưới dạng JSON
+    request_json = request.get_json()
+    prompt = request_json['text']
+
+    # Thực hiện sinh text response bằng OpenAI API
+    completions = openai.Completion.create(
+        engine=model_engine,
+        prompt=prompt,
+        max_tokens=60,
+        n=1,
+        stop=None,
+        temperature=0.5,
+    )
+    message = completions.choices[0].text.strip()
+
+    # Trả về response dưới dạng JSON cho client
+    response = {'message': message}
     return jsonify(response)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(debug=True,host="0.0.0.0", port=5000,use_reloader=True)
