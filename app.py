@@ -15,7 +15,7 @@ model_engine = "davinci" # ví dụ
 @app.route('/generate', methods=['POST'])
 def generate():
     # Lấy input text từ request của client dưới dạng JSON
-    data = request.json['text']
+    # data = request.json['text']
     # return data
 
     # # Lấy prompt từ input text
@@ -33,7 +33,7 @@ def generate():
     # message = completions.choices[0].text.strip()
 
     # # Trả về response dưới dạng JSON cho client
-    res = {'message': data}
+    res = {'message': '123'}
     return jsonify(res)
 
 
