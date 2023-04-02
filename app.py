@@ -1,11 +1,11 @@
 from flask import Flask, jsonify, request
 import openai
+import os
 
 app = Flask(__name__)
 
 # Khởi tạo OpenAI API
-openai.api_key = process.env.OPENAI_API_KEY;
-
+api_key = os.environ.get('OPENAI_API_KEY')
 
 # Chọn model để sinh ra text response
 model_engine = "davinci" # ví dụ
