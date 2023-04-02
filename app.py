@@ -15,25 +15,25 @@ model_engine = "davinci" # ví dụ
 @app.route('/generate', methods=['POST'])
 def generate():
     # Lấy input text từ request của client dưới dạng JSON
-    data = request.json
-    return data
+    data = request.json['text']
+    # return data
 
     # # Lấy prompt từ input text
     # prompt = data['text']
 
     # Thực hiện sinh text response bằng OpenAI API
-    completions = openai.Completion.create(
-        engine=model_engine,
-        prompt=prompt,
-        max_tokens=60,
-        n=1,
-        stop=None,
-        temperature=0.5,
-    )
-    message = completions.choices[0].text.strip()
+    # completions = openai.Completion.create(
+    #     engine=model_engine,
+    #     prompt=prompt,
+    #     max_tokens=60,
+    #     n=1,
+    #     stop=None,
+    #     temperature=0.5,
+    # )
+    # message = completions.choices[0].text.strip()
 
-    # Trả về response dưới dạng JSON cho client
-    res = {'message': message}
+    # # Trả về response dưới dạng JSON cho client
+    res = {'message': data}
     return jsonify(res)
 
 
