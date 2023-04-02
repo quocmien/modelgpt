@@ -5,8 +5,8 @@ import os
 app = Flask(__name__)
 
 # Khởi tạo OpenAI API
-api_key = os.environ.get('OPENAI_API_KEY')
-
+# api_key = os.environ.get('OPENAI_API_KEY')
+openai.api_key = "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"
 # Chọn model để sinh ra text response
 model_engine = "davinci" # ví dụ
 
